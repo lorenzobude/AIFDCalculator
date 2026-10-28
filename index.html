@@ -1,6 +1,6 @@
 <!doctype html>
-<html lang="en">
 
+<html lang="en">
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -9,34 +9,37 @@
     <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
 </head>
-
 <body>
     <main class="calculator" aria-label="Calculator">
         <h1 class="calculator__title">Calculator</h1>
-        <output class="calculator__display" id="display" aria-live="polite">0</output>
-
-        <div class="calculator__keys" aria-label="Calculator keys">
-            <button class="key key--utility" type="button" data-action="clear">C</button>
-            <button class="key key--operator" type="button" data-operator="/">÷</button>
-            <button class="key key--operator" type="button" data-operator="*">×</button>
-            <button class="key key--operator" type="button" data-operator="-">−</button>
-
-            <button class="key" type="button" data-digit="7">7</button>
-            <button class="key" type="button" data-digit="8">8</button>
-            <button class="key" type="button" data-digit="9">9</button>
-            <button class="key key--operator" type="button" data-operator="+">+</button>
-
-            <button class="key" type="button" data-digit="4">4</button>
-            <button class="key" type="button" data-digit="5">5</button>
-            <button class="key" type="button" data-digit="6">6</button>
-            <button class="key key--operator" type="button" data-operator="=">=</button>
-
-            <button class="key" type="button" data-digit="1">1</button>
-            <button class="key" type="button" data-digit="2">2</button>
-            <button class="key" type="button" data-digit="3">3</button>
-            <button class="key key--zero" type="button" data-digit="0">0</button>
-        </div>
-    </main>
+    <output
+        class="calculator__display"
+        id="display"
+        aria-live="polite"
+    >0</output>
+    <div class="calculator__keys" aria-label="Calculator keys">
+        <!-- Utility and operator buttons -->
+        <button class="key key--utility" type="button" data-action="clear">C</button>
+        <button class="key key--operator" type="button" data-operator="/">÷</button>
+        <button class="key key--operator" type="button" data-operator="*">×</button>
+        <button class="key key--operator" type="button" data-operator="-">−</button>
+        <!-- Number buttons -->
+        <button class="key" type="button" data-digit="7">7</button>
+        <button class="key" type="button" data-digit="8">8</button>
+        <button class="key" type="button" data-digit="9">9</button>
+        <button class="key key--operator" type="button" data-operator="+">+</button>
+        <button class="key" type="button" data-digit="4">4</button>
+        <button class="key" type="button" data-digit="5">5</button>
+        <button class="key" type="button" data-digit="6">6</button>
+        <button class="key key--operator" type="button" data-operator="=">=</button>
+        <button class="key" type="button" data-digit="1">1</button>
+        <button class="key" type="button" data-digit="2">2</button>
+        <button class="key" type="button" data-digit="3">3</button>
+        <button class="key key--utility" type="button" data-action="backspace">⌫</button>
+        <!-- Zero and decimal buttons -->
+        <button class="key key--zero" type="button" data-digit="0">0</button>
+        <button class="key" type="button" data-action="decimal">.</button>
+    </div>
+</main>
 </body>
-
 </html>
