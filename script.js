@@ -1,5 +1,8 @@
 const display = document.querySelector("#display");
 const keys = document.querySelector(".calculator__keys");
+const decimalKey = document.querySelector('[data-action="decimal"]');
+const divideByZeroMessage = "Nope, zero division!";
+const invalidResultMessage = "Invalid result";
 let displayValue = "0";
 let firstNumber = null;
 let selectedOperator = null;
@@ -42,6 +45,10 @@ function operate(operator, a, b) {
 
 function updateDisplay() {
     display.textContent = displayValue;
+    decimalKey.disabled =
+        !waitingForSecondNumber &&
+        !resultDisplayed &&
+        displayValue.includes(".");
 }
 
 function clearCalculator() {
@@ -55,8 +62,8 @@ function clearCalculator() {
 
 function inputDigit(digit) {
     if (
-        displayValue === "Cannot divide by zero!" ||
-        displayValue === "Invalid result"
+        displayValue === divideByZeroMessage ||
+        displayValue === invalidResultMessage
     ) {
         clearCalculator();
     }
@@ -74,8 +81,8 @@ function inputDigit(digit) {
 
 function inputDecimal() {
     if (
-        displayValue === "Cannot divide by zero!" ||
-        displayValue === "Invalid result"
+        displayValue === divideByZeroMessage ||
+        displayValue === invalidResultMessage
     ) {
         clearCalculator();
     }
@@ -106,8 +113,8 @@ function calculate() {
     if (result === null || !Number.isFinite(result)) {
         displayValue =
             selectedOperator === "/" && secondNumber === 0
-                ? "Cannot divide by zero!"
-                : "Invalid result";
+                ? divideByZeroMessage
+                : invalidResultMessage;
         updateDisplay();
         firstNumber = null;
         selectedOperator = null;
@@ -116,18 +123,18 @@ function calculate() {
         return false;
     }
     displayValue = String(Number(result.toPrecision(12)));
-    updateDisplay();
     firstNumber = result;
     selectedOperator = null;
     waitingForSecondNumber = true;
     resultDisplayed = true;
+    updateDisplay();
     return true;
 }
 
 function selectOperator(operator) {
     if (
-        displayValue === "Cannot divide by zero!" ||
-        displayValue === "Invalid result"
+        displayValue === divideByZeroMessage ||
+        displayValue === invalidResultMessage
     ) {
         return;
     }
@@ -145,12 +152,13 @@ function selectOperator(operator) {
     selectedOperator = operator;
     waitingForSecondNumber = true;
     resultDisplayed = false;
+    updateDisplay();
 }
 
 function backspace() {
     if (
-        displayValue === "Cannot divide by zero!" ||
-        displayValue === "Invalid result" ||
+        displayValue === divideByZeroMessage ||
+        displayValue === invalidResultMessage ||
         resultDisplayed
     ) {
         clearCalculator();
@@ -212,6 +220,7 @@ document.addEventListener("keydown", function (event) {
         backspace();
     }
 });
+
 if (keys && display) {
     keys.addEventListener("click", handleKeyClick);
 }
